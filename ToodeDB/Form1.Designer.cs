@@ -38,17 +38,16 @@
             this.btn_new = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toodenimetusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kogusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hindDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LisaPilt = new System.Windows.Forms.DataGridView();
             this.toodetableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toodedDataSet = new ToodeDB.ToodedDataSet();
             this.toodetableTableAdapter = new ToodeDB.ToodedDataSetTableAdapters.ToodetableTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnPilt = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.LisaPilt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toodetableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toodedDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Toode
@@ -130,47 +129,16 @@
             this.btn_Delete.TabIndex = 8;
             this.btn_Delete.Text = "Kustuta";
             this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
-            // dataGridView1
+            // LisaPilt
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.toodenimetusDataGridViewTextBoxColumn,
-            this.kogusDataGridViewTextBoxColumn,
-            this.hindDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.toodetableBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(321, 54);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(441, 150);
-            this.dataGridView1.TabIndex = 9;
-            this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // toodenimetusDataGridViewTextBoxColumn
-            // 
-            this.toodenimetusDataGridViewTextBoxColumn.DataPropertyName = "Toodenimetus";
-            this.toodenimetusDataGridViewTextBoxColumn.HeaderText = "Toodenimetus";
-            this.toodenimetusDataGridViewTextBoxColumn.Name = "toodenimetusDataGridViewTextBoxColumn";
-            // 
-            // kogusDataGridViewTextBoxColumn
-            // 
-            this.kogusDataGridViewTextBoxColumn.DataPropertyName = "Kogus";
-            this.kogusDataGridViewTextBoxColumn.HeaderText = "Kogus";
-            this.kogusDataGridViewTextBoxColumn.Name = "kogusDataGridViewTextBoxColumn";
-            // 
-            // hindDataGridViewTextBoxColumn
-            // 
-            this.hindDataGridViewTextBoxColumn.DataPropertyName = "Hind";
-            this.hindDataGridViewTextBoxColumn.HeaderText = "Hind";
-            this.hindDataGridViewTextBoxColumn.Name = "hindDataGridViewTextBoxColumn";
+            this.LisaPilt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LisaPilt.Location = new System.Drawing.Point(321, 54);
+            this.LisaPilt.Name = "LisaPilt";
+            this.LisaPilt.Size = new System.Drawing.Size(441, 150);
+            this.LisaPilt.TabIndex = 9;
+            this.LisaPilt.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             // 
             // toodetableBindingSource
             // 
@@ -186,12 +154,33 @@
             // 
             this.toodetableTableAdapter.ClearBeforeFill = true;
             // 
+            // btnPilt
+            // 
+            this.btnPilt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnPilt.Location = new System.Drawing.Point(36, 252);
+            this.btnPilt.Name = "btnPilt";
+            this.btnPilt.Size = new System.Drawing.Size(75, 23);
+            this.btnPilt.TabIndex = 10;
+            this.btnPilt.Text = "Lisa pilt";
+            this.btnPilt.UseVisualStyleBackColor = true;
+            this.btnPilt.Click += new System.EventHandler(this.btnPilt_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(321, 222);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(441, 216);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnPilt);
+            this.Controls.Add(this.LisaPilt);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.btn_new);
@@ -203,9 +192,10 @@
             this.Controls.Add(this.Toode);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LisaPilt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toodetableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toodedDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,14 +212,12 @@
         private System.Windows.Forms.Button btn_new;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_Delete;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView LisaPilt;
         private ToodedDataSet toodedDataSet;
         private System.Windows.Forms.BindingSource toodetableBindingSource;
         private ToodedDataSetTableAdapters.ToodetableTableAdapter toodetableTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn toodenimetusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kogusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hindDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnPilt;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
