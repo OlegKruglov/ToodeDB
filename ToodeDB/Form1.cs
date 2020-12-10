@@ -15,7 +15,7 @@ namespace ToodeDB
     {
         SqlConnection connect = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =|DataDirectory|\AppData\Tooded.mdf; Integrated Security = True");
         SqlCommand command;
-        SqlDataAdapter adapter;
+        SqlDataAdapter adapter,adapter2;
         int Id = 0;
         public Form1()
         {
@@ -30,6 +30,16 @@ namespace ToodeDB
             adapter = new SqlDataAdapter("SELECT * FROM Toodetable", connect);
             adapter.Fill(tabel);
             LisaPilt.DataSource = tabel;
+            pictureBox1.Image = Image.FromFile("../../images/Piim.jpg");
+
+            adapter2 = new SqlDataAdapter("SELECT Kategooria_nimetus FROM Kategooria", connect);
+            DataTable kat_tabel = new DataTable();
+            adapter2.Fill(kat_tabel);
+            foreach(DataRow row in kat_tabel.Rows)
+            {
+                comboBox1.Items.Add(row["Kategooria_nimetus"]);
+            }
+
             connect.Close();
         }
         private void ClearData()
@@ -70,14 +80,16 @@ namespace ToodeDB
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            if (Toode.Text != "" && Kogus.Text != "" && Hinne.Text != "")
+            if (Toode.Text != "" && Kogus.Text != "" && Hinne.Text != "" && comboBox1.SelectedItem !=null)
             {
-                command = new SqlCommand("UPDATE Toodetable SET Toodenimetus=@toode, Kogus=@kogus,Hind=@hind WHERE Id=@id", connect);
+                command = new SqlCommand("INSERT INTO Toodetable(Toodenimetus,Kogus,Hind,Kategooria_Id) VALUES (@toode,@kogus,@hind)", connect);
                 connect.Open();
                 command.Parameters.AddWithValue("@id", Id);
                 command.Parameters.AddWithValue("@toode", Toode.Text);
                 command.Parameters.AddWithValue("@kogus", Kogus.Text);
                 command.Parameters.AddWithValue("@hind", Hinne.Text.Replace(",", "."));
+                string file_pilt = Toode.Text + ".jpg";
+                command.Parameters.AddWithValue("@pilt", file_pilt);
                 command.ExecuteNonQuery();
                 connect.Close();
                 DisplayData();
@@ -96,6 +108,14 @@ namespace ToodeDB
         {
             Id = Convert.ToInt32(LisaPilt.Rows[e.RowIndex].Cells[0].Value.ToString());
             Toode.Text = LisaPilt.Rows[e.RowIndex].Cells[1].Value.ToString();
+            Kogus.Text = LisaPilt.Rows[e.RowIndex].Cells[2].Value.ToString();
+            Hinne.Text = LisaPilt.Rows[e.RowIndex].Cells[3].Value.ToString();
+            string v = LisaPilt.Rows[e.RowIndex].Cells[4].Value.ToString();
+            comboBox1.SelectedIndex = Int32.Parse(v);
+
+
+
+
         }
 
         private void btn_Delete_Click(object sender, EventArgs e)
@@ -116,6 +136,7 @@ namespace ToodeDB
                 MessageBox.Show("Viga");
             }
         }
+
 
         private void btnPilt_Click(object sender, EventArgs e)
         {

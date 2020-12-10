@@ -44,6 +44,7 @@
             this.toodetableTableAdapter = new ToodeDB.ToodedDataSetTableAdapters.ToodetableTableAdapter();
             this.btnPilt = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.LisaPilt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toodetableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toodedDataSet)).BeginInit();
@@ -173,11 +174,20 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(144, 131);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(119, 21);
+            this.comboBox1.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnPilt);
             this.Controls.Add(this.LisaPilt);
@@ -218,6 +228,7 @@
         private ToodedDataSetTableAdapters.ToodetableTableAdapter toodetableTableAdapter;
         private System.Windows.Forms.Button btnPilt;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
